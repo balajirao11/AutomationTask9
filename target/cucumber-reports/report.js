@@ -1,9 +1,11 @@
 $(document).ready(function() {var formatter = new CucumberHTML.DOMFormatter($('.cucumber-report'));formatter.uri("automationPractice.feature");
 formatter.feature({
   "line": 1,
-  "name": "Register New Customer and ADD Item to wish list",
+  //"name": "Register New Customer and ADD Item to wish list",
+  "name": "Register New Customer and place an order from T-shirts tab",
   "description": "",
-  "id": "register-new-customer-and-add-item-to-wish-list",
+  //"id": "register-new-customer-and-add-item-to-wish-list",
+  "id": "register-new-customer-and-place-an-order-from-T-shirts-tab",
   "keyword": "Feature"
 });
 formatter.scenarioOutline({

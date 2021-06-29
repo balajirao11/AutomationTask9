@@ -3,6 +3,7 @@ import org.openqa.selenium.interactions.Actions;
 
 import cucumber.TestContext;
 import pageObjects.FormDetails;
+import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
 public class FormDetailsSteps {
 	TestContext testContext;
@@ -11,6 +12,8 @@ public class FormDetailsSteps {
 		 testContext = context;
 		 formDetails = testContext.getPageObjectManager().getFormDetails();
 		 }
+
+	
 	
 	@When("^user select title \"([^\"]*)\"$")
 	public void user_select_title(String arg1) throws Throwable {
@@ -67,6 +70,13 @@ public void user_select_the_state(String arg1) throws Throwable {
     // Write code here that turns the phrase above into concrete actions
     formDetails.selectState(arg1);
 }
+
+ @Then("^user get the list of states$")
+ public void user_get_the_list_of_states() throws Throwable {
+    // Write code here that turns the phrase above into concrete actions
+    formDetails.listStateNames();
+}
+
 
 @When("^user enter the zip \"([^\"]*)\"$")
 public void user_enter_the_zip(String arg1) throws Throwable {

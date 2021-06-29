@@ -6,6 +6,7 @@ import pageObjects.SignInPage;
 import pageObjects.FormDetails;
 import pageObjects.MyWishlistsPage;
 import pageObjects.SpecificItemPage;
+import pageObjects.ProductPage;
 
 public class PageObjectManager {
 	 
@@ -17,10 +18,15 @@ public class PageObjectManager {
 	private MyAccountPage myaccountPage;
 	private MyWishlistsPage mywishlistsPage;
 	private SpecificItemPage specificitemPage;
+	private ProductPage productPage;
 	 
-	 public PageObjectManager(WebDriver driver) {
+
+	//Constructor
+	public PageObjectManager(WebDriver driver) {
 		 this.driver = driver;
 	 }
+	 //Ternary operator ?:
+	//Page object creation method, if null create new object of the page,else create a new (homePage)
 	public HomePage getHomePage(){
 		 return (homePage == null) ? homePage = new HomePage(driver) : homePage;
 	}
@@ -33,6 +39,10 @@ public class PageObjectManager {
 	public MyAccountPage getMyAccountPage() {
 		return (myaccountPage == null) ? myaccountPage = new MyAccountPage(driver) : myaccountPage;
 	}
+	
+	public ProductPage getProductPage(){	 
+		 return (productPage == null) ? productPage = new ProductPage(driver) : productPage;
+   }
 	public MyWishlistsPage getMyWishlistsPage(){	 
 		 return (mywishlistsPage == null) ? mywishlistsPage = new MyWishlistsPage(driver) : mywishlistsPage;
     }	 

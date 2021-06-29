@@ -10,18 +10,15 @@ import managers.FileReaderManager;
  
 @RunWith(Cucumber.class)
 @CucumberOptions(
- //features = "src/test/resources/functionalTests/List.feature",
- //features = "src/test/resources/functionalTests/automationPractice.feature",		 
- //features = "src/test/resources/functionalTests/Sample.feature",
- //features = "src/tet/resources/functionalTests/hashMap.feature",
- features = "src/test/resources/functionalTests/automationTask.feature",
- glue= {"stepDefinitions"},
+ //features = "src/test/resources/functionalTests/login.feature",
+ features = "src/test/resources/functionalTests/sample.feature",		 
+ glue= {"stepDefinitions/LoginPageSteps"},
  plugin = { "com.cucumber.listener.ExtentCucumberFormatter:target/cucumber-reports/report.html"},
  monochrome = true  //Console o/p for cucumber
  )
  
  
-public class TestRunner {
+public class TestRunner1 {
 /* @AfterClass
  public static void writeExtentReport() {
  Reporter.loadXMLConfig(new File(FileReaderManager.getInstance().getConfigReader().getReportConfigPath()));

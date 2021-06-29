@@ -13,6 +13,20 @@ public class MyAccountPageSteps {
 		 myaccountPage = testContext.getPageObjectManager().getMyAccountPage();
 	}
 	
+	
+	@Then("^user validate fields$")
+	public void user_validate_fields() {
+		if(myaccountPage.validFieldname()) {
+			System.out.println("Validation successful: ");
+		}
+		else {
+			myaccountPage.logoutfromTheApplication();
+			testContext.getWebDriverManager().closeDriver();
+			throw new Error("Validation failed.");
+		}
+}
+
+	
 	@Then("^user logged in and navigate to my account page$")
 	public void user_logged_in_and_navigate_to_my_account_page() {
 			if(myaccountPage.comparePageTitle()) {
@@ -25,9 +39,39 @@ public class MyAccountPageSteps {
 			}
 	}
 	
-	@When("^user clicks on \"([^\"]*)\" tab$")
+	/*@When("^user clicks on \"([^\"]*)\" tab$")
 	public void user_clicks_on_tab(String arg1) throws Throwable {
 		myaccountPage.tshirtsTab();	
+	}*/
+	
+	@When("^user clicks on \"([^\"]*)\" tab$")
+	public void user_clicks_on_tab(String arg1) throws Throwable {
+		myaccountPage.dressesTab();	
+	}
+	
+	@Then ("^user clicks on dropdown tab$")
+	public void user_clicks_dropdown_tab() throws Throwable {
+		myaccountPage.dropDown();	
+	}
+	
+	@Then ("^user product added to the cart$")
+	public void user_product_added_to_cart() throws Throwable {
+		myaccountPage.addTocart();	
+	}
+	
+	@Then("^user clicks on proceed to checout tab$")
+	public void user_clicks_on_proceed_checout_tab() throws Throwable {
+		myaccountPage.prchkoutTab();	
+	}
+	
+	@Then("^user clicks on checkout$")
+	public void user_clicks_on_checkout_button() {
+		myaccountPage.cartList();	
+	}
+
+	@Then("^user clicks on signout Button$")
+	public void user_clicks_on_signout_button() {
+		myaccountPage.logoutfromTheApplication();	
 	}
 
 	
@@ -80,8 +124,6 @@ public class MyAccountPageSteps {
 	}
 	
 	
-	
-	
 	@Then("^user can confirm that item is added to the wishlist$")
 	public void user_can_confirm_that_item_is_added_to_the_wishlist() {
 		if(myaccountPage.VerifyTheQuantityequalsToOne()) {
@@ -98,4 +140,10 @@ public class MyAccountPageSteps {
 		myaccountPage.logoutfromTheApplication();
 		testContext.getWebDriverManager().closeDriver();
 	}
-}
+	
+	@Then("^user clicks on cart icon$")
+	public void user_clicks_on_cart_icon() {
+		myaccountPage.listCartItems();
+			
+		}
+	}

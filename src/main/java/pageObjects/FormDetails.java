@@ -1,4 +1,9 @@
 package pageObjects;
+//import java.awt.List;
+
+import java.util.Iterator;
+import java.util.List;
+
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
@@ -15,7 +20,11 @@ public class FormDetails {
 		this.driver = driver;
 		PageFactory.initElements(driver, this);
 	}
-	//User account creation details page - Radio button Mr
+	//Validate bank account field
+	@FindBy(how = How.XPATH, using = "//a[@class='progressive-nav__link' and contains(@onclick,'Bank accounts')]")
+	private static WebElement bnkacts;
+	
+	
 	@FindBy(how = How.XPATH, using = "//*[contains(text(),'Title')]//following::input[1]")
 	private static WebElement rbGener1;
 	//User account creation details page - Radio button Mrs
@@ -84,6 +93,7 @@ public class FormDetails {
 			System.out.println("not a valid input"+arg1);	
 		}
 			
+		System.out.println("Display input: "+arg1);
 	}
 	
 	
@@ -127,6 +137,46 @@ public class FormDetails {
 		 Select dropdownState = new Select(listState);
 		 dropdownState.selectByVisibleText(arg1);
 	}
+	
+	public void listStateNames() {
+		listState.click();
+		 Select dropdownState = new Select(listState);
+		
+		 /* for loop
+		 List<WebElement> allStates = dropdownState.getOptions();
+		 
+		 int cnt = allStates.size();
+		 
+		 System.out.println("Total no.of states: " +cnt);
+		 
+		 
+		 for(int i=0; i < cnt; i++) {		 
+		 System.out.println("State name: "+allStates.get(i).getText());
+		 */
+		 
+		 /* Advanced for loop - start
+		 List<WebElement> allStates = dropdownState.getOptions();
+		 
+	      for (WebElement i : allStates) { 		      
+	    	  System.out.println("State name: "+i.getText());		
+	      }
+	      */
+		 	 
+		 /* While Loop for iterating List*/
+		 
+		 List<WebElement> allStates = dropdownState.getOptions();
+		 Iterator<WebElement> itr = allStates.iterator();
+		 
+		 while (itr.hasNext()){
+			 System.out.println("State name: "+itr.next().getText());
+	      }
+
+
+		 
+	}
+
+	
+	
 	
 	//The below method enter zip/postal code
 	public void enterPostalCode(String arg1) {
