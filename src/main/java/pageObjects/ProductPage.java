@@ -32,29 +32,49 @@ public class ProductPage {
 	*/	
 
 				
-		public void prodName() {
-			WebElement text = driver.findElement(By.xpath("//div[@data-index='5']"));			
-			String txt = text.getText();
-			System.out.println("txt: " +txt);	
-			//prdName.click();
-			List<String> prd_Name = new LinkedList<String>();
-			prd_Name.add(txt);
-			
-			Actions acs = new Actions(driver);
-			acs.moveToElement(text).build().perform();
-			acs.doubleClick(text).perform();
-
-			
-			
-						
-					
-		for (int i=0;i< prd_Name.size(); i++) {
-			List<String> prod_Name = prd_Name;
-			System.out.println ("Product name: " +prod_Name);
-			
-		}
-}
+		//public String getProdName(String prodName) {
+		public String getProdName(String pdName) {
+			//WebElement text = driver.findElement(By.xpath("//div[@data-index='5']"));
+			//String txt = text.getText();
+			//System.out.println("txt: " +txt);
+			String prodName;
 		
+			try {
+				WebElement prdNme = driver.findElement(By.xpath("//ul[@class='product_list grid row']//li[2]//a[@class='product-name' and contains(text(), 'Printed Dress')]"));
+				//String prdName = prdNme.getText();
+				 prodName =  prdNme.getText();
+				System.out.println("product name: " +prodName);
+				return prodName;	
+			} catch(Exception e) {
+				return "";	
+			}
+			//return prodName;
+			
+		
+//			//prdName.click();
+//			List<String> prd_Name = new LinkedList<String>();
+//			prd_Name.add(txt);
+//			
+//			Actions acs = new Actions(driver);
+//			acs.moveToElement(text).build().perform();
+//			acs.doubleClick(text).perform();
+//					
+//		for (int i=0;i< prd_Name.size(); i++) {
+//			List<String> prod_Name = prd_Name;
+//			System.out.println ("Product name: " +prod_Name);
+			
+		//}
+		
+}
+
+	public String  cartProdName(String cartName) {
+		WebElement cartPrdName = driver.findElement(By.xpath("//td[@class='cart_description']//a[contains(text(),'Printed Dress')]"));
+		String cartProductName = cartPrdName.getText();
+		System.out.println("Product name in cart: " + cartProductName);
+		return cartProductName;
+	}
+	
+	
 		
 	//Amazon Add to cart click
 	  @FindBy(how=How.XPATH,using = "//input[@id='add-to-cart-button']")

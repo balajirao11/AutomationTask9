@@ -1,6 +1,7 @@
 package pageObjects;
 import java.util.List;
 
+import org.junit.Assert;
 import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
@@ -48,7 +49,7 @@ public class MyAccountPage {
 		
 	
 	//My Account page object - Sign out button
-	@FindBy(how = How.XPATH, using = "//*[@title='Log me out']")
+	@FindBy(how = How.XPATH, using = "//a[@class='logout']")
 	private static WebElement signoutbtn;
 	
 	//The below method compares the page title and returns true/false
@@ -207,7 +208,7 @@ public class MyAccountPage {
 		System.out.println("Closewindow: " +clsWindow.getText());
 		clsWindow.click();
 */
-		System.out.println("Proceed to checkout ");		
+		//System.out.println("Proceed to checkout ");		
 		WebElement checkOut = driver.findElement(By.xpath("//a[@title='Proceed to checkout']"));		
 		System.out.println("Proceed to checkout: " +checkOut.getText());
 		checkOut.click();
@@ -242,23 +243,47 @@ public class MyAccountPage {
 	public void listCartItems() {
 		
 		try {
-		WebElement cartItems = driver.findElement(By.xpath("//a[@title='View my shopping cart']"));
-		Actions acs = new Actions(driver);
-		acs.moveToElement(cartItems).build().perform();
-		acs.clickAndHold().wait(5000);
-		//click().perform();
-		boolean isPresent = driver.findElement(By.xpath("//a[@class='cart_block_product_name' and contains(text(),'Printed Dress')]")).isDisplayed();
-		 //WebElement itemCnt = driver.findElement(By.xpath("//a[@title='View my shopping cart']//span[contains(text(),'empty')"));
-		 
-	
-		 if (isPresent == true) {
-			 System.out.println("Item still available in Cart ");
-		 	}
-		} catch (Exception e){
-			System.out.println("Item not available in Cart ");	
+			String dressName = "Printed Dress";
+			String dress =  driver.findElement(By.xpath("//td[@class='cart_description']//p[@class='product-name']//a[contains(text(),'Printed Dress')]")).getText();
+			System.out.println("Dress displayed:" +dress);
+			try {
+				Assert.assertEquals(dress, dressName);
+				System.out.println("Item still available in Cart  ");
+			}catch (Exception e) {
+				System.out.println("Item not available in Cart ");
+			}
+		} catch (Exception e) {
+			System.out.println("Item not available in Cart ");
 		}
 		
 		
+		
+//		try {
+//		WebElement cartItems = driver.findElement(By.xpath("//a[@title='View my shopping cart']"));
+//		Actions acs = new Actions(driver);
+//		acs.moveToElement(cartItems).build().perform();
+//		acs.clickAndHold().wait(5000);
+//		//click().perform();
+//		//boolean isPresent = driver.findElement(By.xpath("//a[@class='cart_block_product_name' and contains(text(),'Printed Dress')]")).isDisplayed();
+//		//boolean isPresent = driver.findElement(By.xpath("//td[@class='cart_description']//p[@class='product-name']//a[contains(text(),'Printed Dress')]")).isDisplayed();
+//		String dressName = "Printed Dress";
+//		String dress =  driver.findElement(By.xpath("//td[@class='cart_description']//p[@class='product-name']//a[contains(text(),'Printed Dress')]")).getText();
+//		System.out.println("Dress displayed:" +dress);
+//		
+//		try {
+//			Assert.assertEquals(dress, dressName);
+//			System.out.println("Item still available in Cart  ");
+//		}catch (Exception e) {
+//			System.out.println("Item not available in Cart ");
+//		}
+//		
+//		//WebElement itemCnt = driver.findElement(By.xpath("//a[@title='View my shopping cart']//span[contains(text(),'empty')"));
+//		 if (isPresent == true) {
+//			 System.out.println("Item still available in Cart ");
+//		 	}
+//		} catch (Exception e){
+//			System.out.println("Item not available in Cart ");	
+//		}
 	}
 	
 }

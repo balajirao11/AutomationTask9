@@ -204,6 +204,7 @@ public class FormDetails {
 	//The below method clicks on Registration button to complete the new user registration
 	public void clkOnRegistration() {
 		btnRegister.click();
+		System.out.println("User Registration completed successfully ");
 	}
 	
 	public void clkOnProceedCheckout() {

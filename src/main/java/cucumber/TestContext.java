@@ -7,7 +7,7 @@ import managers.WebDriverManager;
 public class TestContext {
  private WebDriverManager webDriverManager;
  private PageObjectManager pageObjectManager;
- private ScenarioContext scenarioContext;
+ public ScenarioContext scenarioContext;
  
  public TestContext(){
 	 webDriverManager = new WebDriverManager();

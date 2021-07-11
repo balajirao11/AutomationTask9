@@ -20,24 +20,32 @@ Feature: Register New Customer and place an order of most expensive Dress
     Then user logged in and navigate to my account page
     When user clicks on "Dresses" tab
     Then user clicks on dropdown tab
+    And  user clicks on productname
     Then user product added to the cart
     Then user clicks on proceed to checout tab
+    And user validate the product name
     And user clicks on cart icon
-    Then user clicks on signout Button
+    #Then user clicks on signout Button
     
     Examples: 
       | email address         | title | first name | sur name | password | address | city      | state | zip   | country       | mobile phone | address alias |
-      | bal148@gsas.com       | mr    | Balaji     | Rao      | Pass1wrd | x1 lane | salt lake | Ohio  | 84044 | United States |   9834398090 | X1list        |
+      | balb255@gxbs.com      | mr    | Balaji     | Rao      | Pass1wrd | x1 lane | salt lake | Ohio  | 84044 | United States |   9834398090 | X1list        |
     
-
+   
   Scenario Outline: Registered user logged in and can see the most expensive dress in cart
-    When user enters "<email id>"
+    When user enters "<email id>" on signin page   
     Then user enters "<password>" and click on signin Button
     And user clicks on cart icon
-    Then user clicks on signout Button
+    #Then user clicks on signout Button
 
    Examples: 
-      | email id           | password |
-      | bal148@gsas.com    | Pass1wrd |
+      | email id            | password |
+      | balb255@gxbs.com    | Pass1wrd |
 
+
+#Scenario: Registered user logged in and can see the most expensive dress in cart
+    #When user enters email Id
+    #Then user enters "<password>" and click on signin Button
+    #And user clicks on cart icon
+    #Then user clicks on signout Button
 
